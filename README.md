@@ -7,6 +7,7 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D20-339933)](package.json)
 [![Tests](https://img.shields.io/badge/tests-102%20cases-brightgreen)](tests)
 [![Status](https://img.shields.io/badge/status-v0.2.0-blue)](docs/roadmap.md)
+[![CI](https://github.com/lllyw666/dsh-forage/actions/workflows/ci.yml/badge.svg)](https://github.com/lllyw666/dsh-forage/actions/workflows/ci.yml)
 
 dsh-forage 不重复实现安装器。它补的是安装之前的决策层：
 
@@ -77,7 +78,7 @@ dsh-forage 只做“装什么”的决策层。默认本地后端直接原子写
 
 ### 从源码运行
 
-    git clone <your-repo-url> dsh-forage
+    git clone https://github.com/lllyw666/dsh-forage.git dsh-forage
     cd dsh-forage
     npm install
     npm run build

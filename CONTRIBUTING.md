@@ -4,7 +4,7 @@ Thanks for helping improve dsh-forage. The project is small on purpose; the high
 
 ## Setup
 
-    git clone <your-fork-url>
+    git clone https://github.com/lllyw666/dsh-forage.git
     cd dsh-forage
     npm install
     npm run build

@@ -15,6 +15,14 @@
     "slash-command"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lllyw666/dsh-forage.git"
+  },
+  "homepage": "https://github.com/lllyw666/dsh-forage#readme",
+  "bugs": {
+    "url": "https://github.com/lllyw666/dsh-forage/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=20.0.0"
