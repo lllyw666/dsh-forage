@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "domain": "research",
+  "title": "科研",
+  "capabilities": [
+    {
+      "id": "arxiv",
+      "type": "mcp",
+      "name": "arXiv",
+      "description": "arXiv 预印本检索与论文详情，无需 API Key，适合快速定位论文。",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索",
+        "学术元数据"
+      ],
+      "tools": [
+        "search_papers",
+        "get_paper"
+      ],
+      "toolCount": 2,
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "arxiv",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@pipeworx/mcp-arxiv"
+        ],
+        "timeoutMs": 120000
+      },
+      "group": "scholarly-search",
+      "weight": 0.78,
+      "homepage": "https://github.com/pipeworx-io/mcp-arxiv",
+      "sourceRepo": "https://github.com/pipeworx-io/mcp-arxiv",
+      "license": "MIT",
+      "packageVersion": "0.1.4",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "免费、无需凭证；arXiv API 可能限流。"
+      ]
+    },
+    {
+      "id": "openalex",
+      "type": "mcp",
+      "name": "OpenAlex",
+      "description": "OpenAlex 2.4 亿+ 学术图谱检索，覆盖论文、作者、机构与引用关系。",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索",
+        "学术元数据"
+      ],
+      "tools": [
+        "openalex_search_works"
+      ],
+      "toolCount": 1,
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "openalex",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@pipeworx/mcp-openalex"
+        ],
+        "timeoutMs": 120000
+      },
+      "group": "scholarly-search",
+      "weight": 0.82,
+      "homepage": "https://github.com/pipeworx-io/mcp-openalex",
+      "sourceRepo": "https://github.com/pipeworx-io/mcp-openalex",
+      "license": "MIT",
+      "packageVersion": "0.1.2",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "免费、无需凭证；Pipeworx 会附带少量网关元工具。"
+      ]
+    },
+    {
+      "id": "semantic-scholar",
+      "type": "mcp",
+      "name": "Semantic Scholar",
+      "description": "Semantic Scholar 论文检索、引用网络、作者与字段信息，无密钥、只读。",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索",
+        "引用整理"
+      ],
+      "tools": [
+        "search_papers",
+        "paper_info",
+        "paper_citations",
+        "paper_references",
+        "paper_field",
+        "paper_authors",
+        "health_check",
+        "version_info",
+        "list_tools",
+        "echo"
+      ],
+      "toolCount": 10,
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "semantic-scholar",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "semantic-scholar-mcp"
+        ],
+        "timeoutMs": 120000
+      },
+      "group": "scholarly-search",
+      "weight": 0.72,
+      "homepage": "https://github.com/mrfentmen/semantic-scholar-mcp",
+      "sourceRepo": "https://github.com/mrfentmen/semantic-scholar-mcp",
+      "license": "MIT",
+      "packageVersion": "1.0.3",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "匿名调用受 Semantic Scholar 限流；失败时会明确报错。"
+      ]
+    },
+    {
+      "id": "zotero",
+      "type": "mcp",
+      "name": "Zotero Local",
+      "description": "读取本地 Zotero 文献库、集合与 PDF 全文，适合已有文献管理习惯的用户。",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "本地文献库",
+        "PDF解析",
+        "学术元数据"
+      ],
+      "tools": [
+        "ping",
+        "search",
+        "get_item_by_key",
+        "get_collection_items",
+        "get_collections",
+        "get_pdf_text"
+      ],
+      "toolCount": 6,
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": false,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "requires": [
+        {
+          "kind": "desktop-app",
+          "label": "Zotero 桌面端与本地 HTTP 服务",
+          "hint": "先运行 Zotero，并安装/启用提供本地 HTTP 接口的插件（如 zotero-mcp-plugin）。"
+        }
+      ],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "zotero",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "zotero-mcp"
+        ],
+        "timeoutMs": 120000
+      },
+      "group": "local-library",
+      "weight": 0.68,
+      "homepage": "https://github.com/cookjohn/zotero-mcp",
+      "sourceRepo": "https://github.com/cookjohn/zotero-mcp",
+      "license": "MIT",
+      "packageVersion": "1.1.0",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "需要 Zotero 桌面端和本地 HTTP 插件；不默认勾选，避免装完不可用。"
+      ]
+    },
+    {
+      "id": "pdf-reader",
+      "type": "mcp",
+      "name": "PDF Reader",
+      "description": "本地或远程 PDF 的读取、导航、标注与保存，支持分块读取长文档。",
+      "domains": [
+        "research",
+        "office"
+      ],
+      "tasks": [
+        "PDF解析",
+        "格式转换"
+      ],
+      "tools": [
+        "list_pdfs",
+        "display_pdf",
+        "interact",
+        "save_pdf"
+      ],
+      "toolCount": 5,
+      "risk": {
+        "level": "medium",
+        "writes": true,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "pdf-reader",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-pdf",
+          "--stdio"
+        ],
+        "timeoutMs": 180000
+      },
+      "group": "pdf",
+      "weight": 0.7,
+      "homepage": "https://github.com/modelcontextprotocol/ext-apps",
+      "sourceRepo": "https://github.com/modelcontextprotocol/ext-apps",
+      "license": "MIT",
+      "packageVersion": "2.0.3",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "标注/保存能力意味着会写文件，因此不默认勾选。"
+      ]
+    }
+  ]
+}

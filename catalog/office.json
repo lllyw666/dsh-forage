@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "domain": "office",
+  "title": "办公",
+  "capabilities": [
+    {
+      "id": "office-builtin",
+      "type": "builtin",
+      "name": "DSH Office Skills",
+      "description": "DSH 内置的 Word / Excel / PPT / PDF 创建、编辑、渲染、重算与导出能力，无需额外 MCP。",
+      "domains": [
+        "office"
+      ],
+      "tasks": [
+        "文档读写",
+        "表格处理",
+        "演示制作",
+        "格式转换",
+        "模板生成"
+      ],
+      "tools": [],
+      "risk": {
+        "level": "medium",
+        "writes": true,
+        "external_requests": false,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "builtin",
+        "provides": [
+          "office",
+          "office-docx",
+          "office-xlsx",
+          "office-pptx",
+          "office-render",
+          "office-export-pdf",
+          "office-recalculate"
+        ]
+      },
+      "group": "office-suite",
+      "weight": 0.9,
+      "homepage": "https://github.com/deepseek-ai/deepseek-harness",
+      "license": "MIT",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "随 DSH 宿主提供；若当前版本未加载，用 /skills 查看。会写入文件，因此不默认勾选。"
+      ]
+    },
+    {
+      "id": "excel",
+      "type": "mcp",
+      "name": "Excel MCP Server",
+      "description": "读写 .xlsx/.xlsm 的单元格、公式、表格与工作表，支持分页读取。",
+      "domains": [
+        "office"
+      ],
+      "tasks": [
+        "表格处理"
+      ],
+      "tools": [
+        "excel_describe_sheets",
+        "excel_read_sheet",
+        "excel_write_to_sheet",
+        "excel_create_table",
+        "excel_copy_sheet"
+      ],
+      "toolCount": 5,
+      "risk": {
+        "level": "medium",
+        "writes": true,
+        "external_requests": false,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "requires": [
+        {
+          "kind": "runtime",
+          "label": "Node.js 20+",
+          "hint": "通过 npx 启动；首次运行会下载依赖。"
+        }
+      ],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "excel",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@negokaz/excel-mcp-server"
+        ],
+        "timeoutMs": 180000
+      },
+      "group": "spreadsheet",
+      "weight": 0.75,
+      "homepage": "https://github.com/negokaz/excel-mcp-server",
+      "sourceRepo": "https://github.com/negokaz/excel-mcp-server",
+      "license": "MIT",
+      "packageVersion": "0.12.0",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "仅处理 Excel；Windows 额外支持 live edit 与截图。"
+      ]
+    },
+    {
+      "id": "office-live",
+      "type": "mcp",
+      "name": "Mindstone Office MCP",
+      "description": "通过 Office Add-in 直接编辑正在运行的 Word / Excel / PowerPoint 文档，覆盖 62 个工具。",
+      "domains": [
+        "office"
+      ],
+      "tasks": [
+        "文档读写",
+        "表格处理",
+        "演示制作"
+      ],
+      "tools": [
+        "rebel_office_excel_set_formula",
+        "rebel_office_excel_format_range"
+      ],
+      "toolCount": 62,
+      "risk": {
+        "level": "high",
+        "writes": true,
+        "external_requests": false,
+        "sensitive_permissions": true
+      },
+      "credentials": [],
+      "requires": [
+        {
+          "kind": "desktop-app",
+          "label": "Microsoft 365 桌面版 Office",
+          "hint": "需要安装并信任本地 Office Add-in sidecar；首次运行有证书提示。"
+        },
+        {
+          "kind": "manual-setup",
+          "label": "Office Add-in 首次配置",
+          "hint": "按包内说明完成 Add-in 安装后再部署，否则 MCP 无法连接文档。"
+        }
+      ],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "office-live",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@mindstone/mcp-server-office"
+        ],
+        "timeoutMs": 240000
+      },
+      "group": "office-suite",
+      "weight": 0.6,
+      "homepage": "https://github.com/mindstone/mcp-servers",
+      "sourceRepo": "https://github.com/mindstone/mcp-servers",
+      "license": "FSL-1.1-MIT",
+      "packageVersion": "0.3.0",
+      "verifiedAt": "2026-10-26",
+      "notes": [
+        "FSL 许可证，不等同于 OSI 开源；高风险、需桌面 Office 与首次配置，必须显式放行。"
+      ]
+    }
+  ]
+}

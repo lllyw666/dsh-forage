@@ -1,0 +1,20 @@
+name: Bug report
+description: Report a reproducible issue
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste secrets, tokens, private URLs, or full mcp.json contents.
+        For security issues use SECURITY.md instead.
+  - type: textarea
+    id: what
+    attributes: { label: What happened?, description: Command, expected result, actual result }
+    validations: { required: true }
+  - type: textarea
+    id: env
+    attributes: { label: Environment, description: DSH version, dsh-forage version, OS, Node version }
+    validations: { required: true }
+  - type: textarea
+    id: logs
+    attributes: { label: Redacted output, render: shell }

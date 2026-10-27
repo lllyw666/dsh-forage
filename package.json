@@ -1,0 +1,71 @@
+{
+  "name": "dsh-forage",
+  "version": "0.2.0",
+  "description": "Intent-aware capability router for DeepSeek Harness: describe a task, pick capabilities, write the registry locally or deploy with dsh-install.",
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "deepseek-harness",
+    "mcp",
+    "skill",
+    "installer",
+    "router",
+    "session-scope",
+    "embedding",
+    "slash-command"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "dsh-forage": "dist/src/index.js"
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/src",
+    "catalog",
+    "plugin/lib",
+    "plugin/package.json",
+    "plugin/cordis.patch.yml",
+    "plugin/README.md",
+    "command-plugin/lib",
+    "command-plugin/package.json",
+    "command-plugin/cordis.patch.yml",
+    "command-plugin/README.md",
+    "docs",
+    "SKILL.md",
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsc -p tsconfig.json && node scripts/test.mjs",
+    "test:plugin": "node --test plugin/test/plan.test.mjs command-plugin/test/command.test.mjs",
+    "test:all": "npm test && npm run test:plugin",
+    "demo": "node dist/src/index.js",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "~5.9.3"
+  }
+}

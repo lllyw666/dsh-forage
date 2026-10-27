@@ -1,0 +1,9 @@
+# dsh-forage minimal MCP registry bundle patch.
+# Insert one startup-only registry row. It reads ~/.dsh/mcp.json plus the
+# project .dsh/mcp.json and mounts enabled servers through
+# @deepseek-ai/dsh-mcp-client. There is no file watcher and no install CLI.
+- insert:
+    - id: forage-mcp-registry
+      name: "@dsh-forage/mcp-registry"
+      config:
+        cwd: ""

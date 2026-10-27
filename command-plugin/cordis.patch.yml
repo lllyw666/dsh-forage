@@ -1,0 +1,6 @@
+- insert:
+    - id: forage-command
+      name: "@dsh-forage/forage-command"
+      config:
+        cli: ""
+        timeoutMs: 20000

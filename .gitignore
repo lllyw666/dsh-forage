@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.research-dsh-forage/
+*.tgz
+npm-debug.log*
+.DS_Store
+.test-tmp/
+.npm-cache/
+.env
+coverage/
+*.log
+*.bak-*

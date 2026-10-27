@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "domain": "research",
+  "title": "测试能力",
+  "capabilities": [
+    {
+      "id": "fake-ok",
+      "type": "mcp",
+      "name": "Fake OK",
+      "description": "测试用只读能力",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索"
+      ],
+      "tools": [
+        "fake_search"
+      ],
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "fake-ok",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "fake-ok"
+        ],
+        "timeoutMs": 5000
+      },
+      "weight": 0.5
+    },
+    {
+      "id": "fake-fail",
+      "type": "mcp",
+      "name": "Fake Fail",
+      "description": "测试用失败能力",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索"
+      ],
+      "tools": [
+        "fake_fail"
+      ],
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "fail-me",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "fake-fail"
+        ],
+        "timeoutMs": 5000
+      },
+      "weight": 0.4
+    },
+    {
+      "id": "fake-cred",
+      "type": "mcp",
+      "name": "Fake Credential",
+      "description": "测试用凭证能力",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索"
+      ],
+      "tools": [
+        "fake_cred"
+      ],
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": true,
+        "sensitive_permissions": false
+      },
+      "credentials": [
+        "TEST_SECRET"
+      ],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "fake-cred",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "fake-cred"
+        ],
+        "env": [
+          "TEST_SECRET"
+        ],
+        "timeoutMs": 5000
+      },
+      "weight": 0.3
+    },
+    {
+      "id": "fake-high",
+      "type": "mcp",
+      "name": "Fake High Risk",
+      "description": "测试用高风险能力",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索"
+      ],
+      "tools": [
+        "fake_write"
+      ],
+      "risk": {
+        "level": "high",
+        "writes": true,
+        "external_requests": true,
+        "sensitive_permissions": true
+      },
+      "credentials": [],
+      "install": {
+        "method": "dsh-install",
+        "kind": "mcp",
+        "server": "fake-high",
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "fake-high"
+        ],
+        "timeoutMs": 5000
+      },
+      "weight": 0.2
+    },
+    {
+      "id": "fake-builtin",
+      "type": "builtin",
+      "name": "Fake Builtin",
+      "description": "测试用内置能力",
+      "domains": [
+        "research"
+      ],
+      "tasks": [
+        "文献检索"
+      ],
+      "tools": [],
+      "risk": {
+        "level": "low",
+        "writes": false,
+        "external_requests": false,
+        "sensitive_permissions": false
+      },
+      "credentials": [],
+      "install": {
+        "method": "builtin",
+        "provides": [
+          "fake-skill"
+        ]
+      },
+      "weight": 0.6
+    }
+  ]
+}

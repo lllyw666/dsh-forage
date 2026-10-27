@@ -1,0 +1,24 @@
+{
+  "name": "@dsh-forage/forage-command",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only /forage slash command for the DSH Web GUI and CLI.",
+  "type": "module",
+  "main": "lib/index.mjs",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "package.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT"
+}
