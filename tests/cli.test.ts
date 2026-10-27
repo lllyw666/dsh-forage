@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, symlinkSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
-import { CLI_ENTRY, FAKE_DSH, FIXTURE_CATALOG, cliEnv, runCli } from "./helpers.js";
+import { CLI_ENTRY, FAKE_DSH, FIXTURE_CATALOG, PACKAGE_ROOT, cliEnv, runCli } from "./helpers.js";
 
 test("plan --json 输出结构化候选且默认项不超过 2 个", () => {
   const result = runCli(["plan", "帮我检索 RAG 论文并整理引用，只读", "--json"]);
@@ -162,7 +162,8 @@ test("POSIX 下通过符号链接启动仍能执行 CLI", { skip: process.platfo
       timeout: 30000
     });
     assert.equal(result.status, 0, result.stderr);
-    assert.match(result.stdout, /dsh-forage 0\.1\.0/);
+    const version = (JSON.parse(readFileSync(path.join(PACKAGE_ROOT, "package.json"), "utf8")) as { version: string }).version;
+    assert.match(result.stdout, new RegExp("dsh-forage " + version.replace(/\./g, "\\.")));
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
