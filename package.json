@@ -60,6 +60,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "tsc -p tsconfig.json && node scripts/test.mjs",
     "test:plugin": "node --test plugin/test/plan.test.mjs command-plugin/test/command.test.mjs",
